@@ -13,7 +13,6 @@ firebase.auth().onAuthStateChanged(function(user) {
       document.getElementById("user_para").innerHTML = "Welcome User : " + email_id;
 
     }
-
   } else {
     // No user is signed in.
 
@@ -23,7 +22,21 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
 });
 function signup()
-{location.href="F:\10th cbse\Game of Thrones"}
+{
+  const email = document.getElementById("email_field").value;
+  const password = document.getElementById('password_field').value;
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Signed in 
+    var user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ..
+  });
+}
 
 function login(){
 
